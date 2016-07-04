@@ -1,0 +1,15 @@
+{% extends 'base-template.html' %}
+{% block cuerpo %}
+    <h1><span style="color: darkcyan"> Bienvenido al sistema de creacion de Quizes <br><strong>QuizEspol</strong></span></h1>
+    <h2> Cada Quiz tiene su Pin unico con el que accederan sus participantes </h2>
+    <br>
+    <form method="post">
+    {% csrf_token %}
+
+    <p align="center">
+    <button type="submit" class="btn btn-success">Nuevo Quiz</button>
+    </p>
+    </form>
+    <br><br>
+
+{% endblock %}

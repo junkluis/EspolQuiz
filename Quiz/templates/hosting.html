@@ -1,0 +1,73 @@
+{% extends 'base-template.html' %}
+{% block cuerpo %}
+{% load staticfiles %}
+
+    <h1>hosting Prueba Conectados:</h1>
+	<div id="nombres" style="background:blue;width:100px;height:100px">
+		
+	</div>
+
+
+	<script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+	<script src="{% static "js/jquery-ui.min.js" %}"></script>
+
+
+	<script type="text/javascript">
+    var global;  
+    function encerar(){
+        $.ajax({
+
+                data:{'csrfmiddlewaretoken':'{{ csrf_token }}'},
+                url:'posthostingelementos',
+                type:'POST',
+                datatype:"json",
+                success: function(data){
+                    
+                    global=data.length;
+                    
+                    console.log(data+"global="+global);
+
+                }
+            });
+
+    }
+
+
+    function agregarTexto(texto){
+        t=document.createElement("span");
+        t.innerHTML=texto+"   ";
+        nombres.appendChild(t);
+    }
+
+
+    function verificarBase(){
+
+
+        $.ajax({
+
+            data:{'csrfmiddlewaretoken':'{{ csrf_token }}'},
+            url:'posthostingelementos',
+            type:'POST',
+            datatype:"json",
+            success: function(data){
+
+                   console.log("se verifico la data");
+
+                   if(global!=data.length){
+                    global=data.length;
+                    console.log("se encontro diferencia");
+                    agregarTexto(data[(data.length)-1].fields.nombre)
+
+                   }
+            }
+        });
+    }
+
+
+    encerar();
+    var intervalo=setInterval(verificarBase,1000);
+
+	</script>
+
+
+{% endblock %}

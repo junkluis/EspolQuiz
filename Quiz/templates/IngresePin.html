@@ -1,0 +1,14 @@
+{% extends 'base-template.html' %}
+{% block cuerpo %}
+    <br><br><br><br><br>
+    <div align="center" >
+        <h1> Ingrese el Pin unico del Quiz! </h1>
+        <form method="post" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+           <h2><br>{% include 'form-template.html' %}</h2>
+            <h4><div style="color: darkred;">{{ error }}</div></h4>
+            <br>
+            <button type="submit" class="btn btn-success btn-lg" > Ingresar </button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base-template.html' %}
+{% block cuerpo %}
+{% load staticfiles %}
+
+jakdjf
+	<input id="texto" type="text" name="pregunta">
+	<br>
+	<button id="boton">clickme</button>
+
+
+	<script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+	<script src="{% static "js/jquery-ui.min.js" %}"></script>
+
+	<script type="text/javascript">
+		
+		boton.addEventListener("click",postear,false);
+
+		function postear(){
+			$.ajax({
+
+                data:{'texto':texto.value,'csrfmiddlewaretoken':'{{ csrf_token }}'},
+                url:'jugador/postUsuario',
+                type:'POST',
+                datatype:"json",
+                success: function(data){
+                    console.log(data);
+                    
+                }
+            });
+
+		}
+
+	</script>
+
+{% endblock %}

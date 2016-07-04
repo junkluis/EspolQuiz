@@ -1,0 +1,18 @@
+{% extends 'base-template.html' %}
+{% block cuerpo %}
+    <h1> Nueva pregunta </h1>
+    <form method="POST" >
+    {% csrf_token %}
+        {% for field in form %}
+            <div>
+                <span><p style="background-color: red">{{ field.errors }}</p></span>
+            </div>
+            <label>{{ field.label_tag }}</label>
+            <div> {{ field }}</div>
+
+        {% endfor %}>
+    <br>
+    <button type="submit" class="save btn btn-default" >Guardar Pregunta</button>
+    </form>
+
+{% endblock %}

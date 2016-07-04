@@ -1,0 +1,28 @@
+{% extends 'base-template.html' %}
+{% block cuerpo %}
+<h1>Quiz creado exitosamente</h1>
+    <h2>El pin de este Quiz es: {{ quiz.pin }}</h2>
+    <br>
+    <button class="btn btn-success" onclick="location='agregarPreg/'">Agregar pregunta</button>
+    <button class="btn btn-info" onclick="location='EmpiezaJuego/'"> - Jugar - </button>
+    <br><br>
+    <div class="container">
+  <h3>Listado de preguntas</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Pregunta</th>
+        <th>Solucion</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for pregunta in quiz.pregunta_set.all %}
+        <tr>
+        <td>{{ pregunta.titulo }}</td>
+        <td>{{ pregunta.opCorrecta }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
